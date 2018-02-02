@@ -1,6 +1,6 @@
 const fs = require('fs')
 //const matrix = [2, 3, 1]
-const matrix = [6, 55, 25]
+const matrix = [10, 888, 407]
 const lut = {
   'Cstline': {layer: 'cstline', minzoom: 10, maxzoom: 15},
   'Cntr': {layer: 'cntr', minzoom: 14, maxzoom: 15},
@@ -21,6 +21,7 @@ const lut = {
 }
 
 function jumpInto(matrix) {
+  let count = 0
   const [Z, X, Y] = matrix
   const z = 18
   const M = 2 ** (z - Z)
@@ -43,7 +44,8 @@ function jumpInto(matrix) {
 	if(f.properties['name'] === '') delete f.properties['name']
 	console.log(JSON.stringify(f))
       }
-      if(y % 5000 === 0 && global.gc) global.gc()
+      count += 1
+      if(count % 1000 === 0 && global.gc) global.gc()
     }
   }
 }
